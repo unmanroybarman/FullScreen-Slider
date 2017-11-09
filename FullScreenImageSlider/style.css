@@ -1,0 +1,65 @@
+body, #slider, .wrap, .slide-content{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    /* height is 10 vh,100 slice acroos, take the full height and 100 slices*/
+    height: 100vh;
+    /* no horizontal scrollbars */
+    overflow-x: hidden;
+}
+
+.wrap{position:relative}
+
+.slide{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide1{background-image: url('images/image1.jpg')}
+.slide2{background-image: url('images/image2.jpeg')}
+.slide3{background-image: url('images/image3.jpeg')}
+
+/* For the text - ImageOne,ImageTwo,ImageThree */
+.slide-content{
+    display: flex;
+    /* instead of row, we want vertical so column*/
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;   
+}
+
+/* For making text bigger, we target span which is in slide-content*/
+.slide-content span{
+    /* 5rem means 5 times the size of core html which is by defult is 16pixels */
+    font-size: 5rem;
+    color: #fff;  
+}
+
+/* Designing and building arrows */
+.arrow{
+    cursor: pointer;
+    position: absolute;
+    /* getting 50% from top to bottom*/
+    top: 50%;
+    margin-top: -35px;
+    width: 0;
+    height: 0;
+    border-style: solid; 
+}
+
+#arrow-left{
+    border-width: 30px 40px 30px 0;
+    border-color: transparent #fff transparent transparent;
+    left: 0;
+    margin-left: 30px;
+}
+
+#arrow-right{
+    border-width: 30px 0 30px 40px;
+    border-color: transparent transparent transparent #fff;
+    right: 0;
+    margin-right: 30px;
+}

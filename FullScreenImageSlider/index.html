@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>FullScreen Slider</title>
+</head>
+
+<body>
+   <div class="warp">
+       <div id="arrow-left" class="arrow"></div>
+       
+       <div id="slider">
+           <div class="slide slide1">
+               <div class="slide-content">
+                   <span>Image One</span>
+               </div>
+           </div>
+           <div class="slide slide2">
+               <div class="slide-content">
+                   <span>Image Two</span>
+               </div>
+           </div>
+           <div class="slide slide3">
+               <div class="slide-content">
+                   <span>Image Three</span>
+               </div>
+           </div>
+       </div>
+       
+       <div id="arrow-right" class="arrow"></div>
+       
+       <script>
+           // selecting all the elements that have a class of slide, querySelectorAll is going to return a html collection which is like an ARRAY & can select each element with index
+           let sliderImages = document.querySelectorAll('.slide'),
+               // For the arrows
+               arrowLeft = document.querySelector('#arrow-left'),
+               arrowRight = document.querySelector('#arrow-right'),
+               // current is used to represent on which image or slide we are on,initially it is at 0
+               current = 0;
+          
+           // Each time we change a slide, we are going to clear out all the images, set them equal to display none(hiding everything), so we are going to call reset function before every slide left,slide right
+           function reset(){
+               //looping through the collection of slides
+               for(let i=0; i < sliderImages.length; i++ ){
+                   sliderImages[i].style.display = 'none';
+               }
+           }
+           
+           //Initializer(Init slider), inside startSlide func we call reset first, then we are going to grab images one by one with sliderImages which acts like an ARRAY
+           function startSlide(){
+               reset();
+               // grabbing 1st image & showing it
+               sliderImages[0].style.display = 'block';
+           }
+           
+           //Adding functionality(when we click arrows), slide previous(slide left),show next(slide right)
+           // Defining function slideLeft(show previous)
+           function slideLeft(){
+               // calling reset(), to wipe the slide clean
+               reset();
+               sliderImages[current - 1].style.display = 'block';
+               current--;
+           }
+           
+           // Defining function show next
+           function slideRight(){
+               reset();
+               sliderImages[current + 1].style.display = 'block';
+               current++;
+           }
+           
+           // To check the slideLeft func we need an Event where we can call it(run it)
+           // Left arrow click
+           arrowLeft.addEventListener('click', function(){
+               //check to see if this is at zero
+               if(current == 0){
+                   current = sliderImages.length;
+               }
+               slideLeft();  
+           });
+           
+           // Right arrow click
+           arrowRight.addEventListener('click', function(){
+               //check to see if this is at zero
+               if(current == sliderImages.length - 1){
+                   current = -1;
+               }
+               slideRight();  
+           });
+           
+           
+           // calling startSlide()
+           startSlide();
+           
+       </script>
+
+   </div>
+</body>
+</html>
